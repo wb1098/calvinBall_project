@@ -16,7 +16,7 @@ var winnerDisplay = document.querySelector('.winnerDisplay');
 // game scoring variables
 var gameOfCalvinBall = [];
 
-//base player to contain each players values for processing and score keeping
+//base player object to contain each players values for processing and score keeping
 var Player = function (score, last_play, broom, has_ball, is_in_tree, crying) {
     'use strict';
     this.score = score;
@@ -103,43 +103,39 @@ function processCalvinBallScores(calvinBallScoreArray) {
     'use strict';
 
     var winningScore = [];
-    var result = '';
+    var theWinnerIs = '';
 
     calvinBallScoreArray.forEach(function (element) {
         winningScore.push(playCalvinBall(element));
     });
 
     var highScore = Math.max.apply(Math, winningScore);
-    result += 'The high score was: ' + highScore.toString() + '<br>';
-    //console.log('The high score was: ' + highScore);
+    theWinnerIs += 'The high score was: ' + highScore.toString() + '<br>';
+    
 
     for (var i = 0; i < winningScore.length; i++) {
         if (highScore === winningScore[i]) {
             if (i === 0) {
-                result += 'The Winner is Player One with a score of ' + highScore.toString() + '<br>';
-                //console.log('The Winner is Player One with a score of: ' + highScore)
+                theWinnerIs += 'The Winner is Player One with a score of ' + highScore.toString() + '<br>';    
             }
 
             if (i === 1) {
-                result += 'The Winner is Player Two with a score of ' + highScore.toString() + '<br>';
-                //console.log('The Winner is Player Two with a score of: ' + highScore)
+                theWinnerIs += 'The Winner is Player Two with a score of ' + highScore.toString() + '<br>';    
             }
 
             if (i === 2) {
-                result += 'The Winner is Player Three with a score of ' + highScore.toString() + '<br>';
-                //console.log('The Winner is Player Three with a score of: ' + highScore)
+                theWinnerIs += 'The Winner is Player Three with a score of ' + highScore.toString() + '<br>';    
             }
 
 
             if (i === 3) {
-                result += 'The Winner is Player Four with a score of ' + highScore.toString() + '<br>';
-                //  console.log('The Winner is Player Four with a score of: ' + highScore)
+                theWinnerIs += 'The Winner is Player Four with a score of ' + highScore.toString() + '<br>';    
             }
 
 
         }
     }
-    winnerDisplay.innerHTML = "<h3>" + result + "</h3>";
+    winnerDisplay.innerHTML = "<h3>" + theWinnerIs + "</h3>";
     return (winningScore);
 }
 

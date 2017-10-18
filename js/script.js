@@ -111,25 +111,25 @@ function processCalvinBallScores(calvinBallScoreArray) {
 
     var highScore = Math.max.apply(Math, winningScore);
     theWinnerIs += 'The high score was: ' + highScore.toString() + '<br>';
-    
+
 
     for (var i = 0; i < winningScore.length; i++) {
         if (highScore === winningScore[i]) {
             if (i === 0) {
-                theWinnerIs += 'The Winner is Player One with a score of ' + highScore.toString() + '<br>';    
+                theWinnerIs += 'The Winner is Player One with a score of ' + highScore.toString() + '<br>';
             }
 
             if (i === 1) {
-                theWinnerIs += 'The Winner is Player Two with a score of ' + highScore.toString() + '<br>';    
+                theWinnerIs += 'The Winner is Player Two with a score of ' + highScore.toString() + '<br>';
             }
 
             if (i === 2) {
-                theWinnerIs += 'The Winner is Player Three with a score of ' + highScore.toString() + '<br>';    
+                theWinnerIs += 'The Winner is Player Three with a score of ' + highScore.toString() + '<br>';
             }
 
 
             if (i === 3) {
-                theWinnerIs += 'The Winner is Player Four with a score of ' + highScore.toString() + '<br>';    
+                theWinnerIs += 'The Winner is Player Four with a score of ' + highScore.toString() + '<br>';
             }
 
 
@@ -241,7 +241,7 @@ function processHas_ball(score, has_ballValue, is_in_treeValue, cryingValue) {
 //gets an extra 395 points if they are in a tree, unless their last play was a number.
 function processIs_in_tree(score, is_in_treeValue, last_playValue) {
     'use strict';
-    if (is_in_treeValue === true && (typeof (last_playValue) === 'number')) {
+    if (is_in_treeValue === true && (typeof (last_playValue) !== 'number')) {
         score += 395;
     }
     return (score);
@@ -344,26 +344,26 @@ function testCalvinBall() {
     assertEqual(processHas_ball(250, true, false, true), 159, 'Test processing has_ball - Test:K'); // fail
 
     //testing broom
-    assertEqual(processBroom(284, 'handle'), 568, 'Test processing broom - Test:L'); // pass    
-    assertEqual(processBroom(284, 'handle'), 400, 'Test processing broom - Test:M'); // fail    
-    assertEqual(processBroom(284, 'brush'), 852, 'Test processing broom - Test:N'); // pass    
-    assertEqual(processBroom(284, 'brush'), 568, 'Test processing broom - Test:O'); // fail    
-    assertEqual(processBroom(284, 'Skiing'), 142, 'Test processing broom - Test:P'); // pass    
-    assertEqual(processBroom(284, 'Skiing'), 568, 'Test processing broom - Test:Q'); // fail    
+    assertEqual(processBroom(284, 'handle'), 568, 'Test processing broom - Test:L'); // pass
+    assertEqual(processBroom(284, 'handle'), 400, 'Test processing broom - Test:M'); // fail
+    assertEqual(processBroom(284, 'brush'), 852, 'Test processing broom - Test:N'); // pass
+    assertEqual(processBroom(284, 'brush'), 568, 'Test processing broom - Test:O'); // fail
+    assertEqual(processBroom(284, 'Skiing'), 142, 'Test processing broom - Test:P'); // pass
+    assertEqual(processBroom(284, 'Skiing'), 568, 'Test processing broom - Test:Q'); // fail
 
     //test last_play
-    assertEqual(processLast_play(277, 'Q'), 200, 'Test processing last_play - Test:R'); // pass    
-    assertEqual(processLast_play(277, 'T'), 300, 'Test processing last_play - Test:S'); // fail    
+    assertEqual(processLast_play(277, 'Q'), 200, 'Test processing last_play - Test:R'); // pass
+    assertEqual(processLast_play(277, 'T'), 300, 'Test processing last_play - Test:S'); // fail
     assertEqual(processLast_play(150, 1.5), 225, 'Test processing last_play - Test:T'); // pass
-    assertEqual(processLast_play(150, 1.5), 400, 'Test processing last_play - Test:U'); // fail    
+    assertEqual(processLast_play(150, 1.5), 400, 'Test processing last_play - Test:U'); // fail
 
     // test updateScore
     assertEqual(updateScore('W'), 500, 'Test processing score - Test:U'); // pass
-    assertEqual(updateScore('W'), 400, 'Test processing score - Test:V'); // fail    
+    assertEqual(updateScore('W'), 400, 'Test processing score - Test:V'); // fail
     assertEqual(updateScore(399), 399, 'Test processing score - Test:W'); // pass
-    assertEqual(updateScore(119), 500, 'Test processing score - Test:X'); // fail  
+    assertEqual(updateScore(119), 500, 'Test processing score - Test:X'); // fail
     assertEqual(updateScore('@'), 500, 'Test processing score - Test:Y'); // pass
-    assertEqual(updateScore('$'), 399, 'Test processing score - Test:Z'); // fail  
+    assertEqual(updateScore('$'), 399, 'Test processing score - Test:Z'); // fail
 
     //test player one
     console.log('Player One Score: ' + playCalvinBall(playerOne));
